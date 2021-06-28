@@ -38,21 +38,19 @@
   "name": "with-electron-typescript",
   "productName": "ElectronTypescriptNext",
   "scripts": {
-    "build": "npm run build-renderer && npm run build-electron",
-    "build-electron": "tsc -p main",
-    "build-renderer": "next build renderer && next export renderer",
-    "clean": "rimraf dist main renderer/out renderer/.next",
-    "dev": "npm run build-electron && electron .",
-    "dist": "npm run build && electron-builder",
+    "build": "run-s build:renderer build:electron",
+    "build:electron": "tsc -p main",
+    "build:renderer": "next build renderer && next export renderer",
+    "clean": "rimraf dist main/*.js renderer/.next renderer/out",
     "fix": "run-s fix:eslint fix:prettier",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .ts --ext .tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --check --ignore-path .gitignore .",
-    "pack-app": "npm run build && electron-builder --dir",
     "prepare": "husky install",
-    "type-check": "tsc"
+    "release": "npm run build && electron-builder --dir",
+    "watch": "npm run build:electron && electron ."
   },
   "version": "1.0.0"
 }
