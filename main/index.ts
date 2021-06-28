@@ -5,6 +5,9 @@ import { format } from "url";
 // Packages
 import { BrowserWindow, app } from "electron";
 import isDev from "electron-is-dev";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import prepareNext from "electron-next";
 
 // Prepare the renderer once the app is ready
