@@ -12,7 +12,13 @@
     "build": "npm run build-renderer && npm run build-electron",
     "pack-app": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "fix": "run-s fix:eslint fix:prettier",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint --ext .ts --ext .tsx --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check --ignore-path .gitignore ."
   },
   "dependencies": {
     "electron-is-dev": "2.0.0",
@@ -21,12 +27,21 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@calmery-chan/eslint-config": "1.0.1",
     "@types/node": "15.12.5",
     "@types/react": "17.0.11",
     "@types/react-dom": "17.0.8",
+    "@typescript-eslint/eslint-plugin": "4.28.0",
     "electron": "13.1.4",
     "electron-builder": "22.11.7",
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-import-resolver-typescript": "2.4.0",
+    "eslint-plugin-import": "2.23.4",
     "next": "11.0.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.3.2",
     "rimraf": "3.0.2",
     "typescript": "4.3.4"
   },
