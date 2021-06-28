@@ -1,4 +1,4 @@
 {
-  "asar": true,
-  "files": ["main", "renderer/out"]
+  "asar": false,
+  "files": ["main/*.js", "renderer/out"]
 }
