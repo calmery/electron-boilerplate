@@ -27,14 +27,14 @@
     "typescript": "4.3.4"
   },
   "license": "MIT",
-  "main": "main/index.js",
+  "main": "build/main/index.js",
   "name": "with-electron-typescript",
   "productName": "ElectronTypescriptNext",
   "scripts": {
-    "build": "run-s build:renderer build:electron",
+    "build": "run-s build:cleanup build:renderer build:electron",
+    "build:cleanup": "rimraf build dist",
     "build:electron": "tsc -p main",
-    "build:renderer": "next build renderer && next export renderer",
-    "clean": "rimraf dist main/*.js renderer/.next renderer/out",
+    "build:renderer": "next build renderer && next export renderer -o build/renderer",
     "fix": "run-s fix:eslint fix:prettier",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
