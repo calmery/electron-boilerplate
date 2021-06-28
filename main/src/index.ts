@@ -1,38 +1,33 @@
-// Native
-import { join } from "path";
-import { format } from "url";
-
-// Packages
+import * as path from "path";
+import * as url from "url";
 import { BrowserWindow, app } from "electron";
 import isDev from "electron-is-dev";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import prepareNext from "electron-next";
+import electronNext from "electron-next";
 
-// Prepare the renderer once the app is ready
 app.on("ready", async () => {
-  await prepareNext("./renderer");
+  await electronNext("./renderer");
 
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+  const window = new BrowserWindow({
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: false,
     },
   });
 
-  const url = isDev
-    ? "http://localhost:8000/"
-    : format({
-        pathname: join(__dirname, "../renderer/index.html"),
-        protocol: "file:",
-        slashes: true,
-      });
-
-  mainWindow.loadURL(url);
+  window.loadURL(
+    isDev
+      ? "http://localhost:8000/"
+      : url.format({
+          pathname: path.join(__dirname, "../renderer/index.html"),
+          protocol: "file:",
+          slashes: true,
+        })
+  );
 });
 
-// Quit the app once all windows are closed
-app.on("window-all-closed", app.quit);
+app.on("window-all-closed", () => {
+  app.quit();
+});
