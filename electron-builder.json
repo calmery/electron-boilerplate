@@ -1,0 +1,4 @@
+{
+  "asar": true,
+  "files": ["main", "renderer/out"]
+}

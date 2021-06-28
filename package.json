@@ -1,11 +1,4 @@
 {
-  "build": {
-    "asar": true,
-    "files": [
-      "main",
-      "renderer/out"
-    ]
-  },
   "dependencies": {
     "electron-is-dev": "2.0.0",
     "electron-next": "3.1.5",
@@ -49,7 +42,6 @@
     "lint:eslint": "eslint --ext .ts --ext .tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --check --ignore-path .gitignore .",
     "prepare": "husky install",
-    "release": "npm run build && electron-builder --dir",
     "watch": "npm run build:electron && electron ."
   },
   "version": "1.0.0"
